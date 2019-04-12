@@ -17,7 +17,7 @@ export default async function resolveLocal (
   wantedDependency: {pref: string},
   opts: {
     prefix: string,
-    lockfileDirectory?: string,
+    lockfileDirectory: string,
   },
 ): Promise<(ResolveResult & ({
   id: string,
@@ -29,7 +29,7 @@ export default async function resolveLocal (
   package: PackageJson,
   resolution: DirectoryResolution,
 })) | null> {
-  const spec = parsePref(wantedDependency.pref, opts.prefix, opts.lockfileDirectory || opts.prefix)
+  const spec = parsePref(wantedDependency.pref, opts.prefix, opts.lockfileDirectory)
   if (!spec) return null
 
   if (spec.type === 'file') {
