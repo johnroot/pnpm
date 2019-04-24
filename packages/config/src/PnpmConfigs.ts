@@ -16,6 +16,7 @@ export interface PnpmConfigs extends Record<string, any> { // tslint:disable-lin
   saveProd?: boolean,
   saveDev?: boolean,
   saveOptional?: boolean,
+  saveOptionalPeer?: boolean,
   savePeer?: boolean,
   production?: boolean,
   development?: boolean,

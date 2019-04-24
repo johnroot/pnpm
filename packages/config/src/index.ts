@@ -53,6 +53,7 @@ export const types = Object.assign({
   'reporter': String,
   'resolution-strategy': ['fast', 'fewer-dependencies'],
   'save-peer': Boolean,
+  'save-optional-peer': Boolean,
   'shamefully-flatten': Boolean,
   'shared-workspace-lockfile': Boolean,
   'shared-workspace-shrinkwrap': Boolean,
@@ -121,6 +122,7 @@ export default async (
     'registry': npmDefaults.registry,
     'resolution-strategy': 'fast',
     'save-peer': false,
+    'save-optional-peer': false,
     'shared-workspace-shrinkwrap': true,
     'shrinkwrap': npmDefaults.shrinkwrap,
     'sort': true,
@@ -217,7 +219,7 @@ export default async (
     pnpmConfig.prefix = (cliArgs['prefix'] ? path.resolve(cliArgs['prefix']) : npmConfig.localPrefix) // tslint:disable-line
     pnpmConfig.bin = path.join(pnpmConfig.prefix, 'node_modules', '.bin')
   }
-  if (opts.cliArgs['save-peer']) {
+  if (opts.cliArgs['save-peer'] || opts.cliArgs['save-optional-peer']) {
     if (opts.cliArgs['save-prod']) {
       const err = new Error('A package cannot be a peer dependency and a prod dependency at the same time')
       err['code'] = 'ERR_PNPM_CONFIG_CONFLICT_PEER_CANNOT_BE_PROD_DEP' // tslint:disable-line
@@ -228,7 +230,11 @@ export default async (
       err['code'] = 'ERR_PNPM_CONFIG_CONFLICT_PEER_CANNOT_BE_OPTIONAL_DEP' // tslint:disable-line
       throw err
     }
-    pnpmConfig.saveDev = true
+    if (opts.cliArgs['save-optional-peer']) {
+      pnpmConfig.lockfileOnly = !pnpmConfig.saveDev
+    } else {
+      pnpmConfig.saveDev = true
+    }
   }
   if (pnpmConfig.sharedWorkspaceLockfile && !pnpmConfig.lockfileDirectory) {
     pnpmConfig.lockfileDirectory = pnpmConfig.workspacePrefix || undefined

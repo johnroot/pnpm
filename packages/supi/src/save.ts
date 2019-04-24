@@ -15,6 +15,7 @@ export default async function save (
     peer?: boolean,
     pref?: string,
     saveType?: DependenciesField | 'peerDependencies',
+    optionalPeer?: boolean,
   }>,
   opts?: {
     dryRun?: boolean,
@@ -38,10 +39,22 @@ export default async function save (
           packageJson.peerDependencies[packageSpec.name] = spec
         }
       }
-    } else if (packageSpec.pref) {
+    } else if (packageSpec.pref && !packageSpec.optionalPeer) {
       const usedDepType = guessDependencyType(packageSpec.name, packageJson as ImporterManifest) || 'dependencies'
       packageJson[usedDepType] = packageJson[usedDepType] || {}
       packageJson[usedDepType]![packageSpec.name] = packageSpec.pref
+    }
+    if (packageSpec.optionalPeer) {
+      const spec = packageSpec.pref || findSpec(packageSpec.name, packageJson as ImporterManifest)
+
+      if (spec) {
+        packageJson.peerDependencies = packageJson.peerDependencies || {}
+        packageJson.peerDependencies[packageSpec.name] = spec
+
+        packageJson.peerDependenciesMeta = packageJson.peerDependenciesMeta || {}
+        packageJson.peerDependenciesMeta[packageSpec.name] = packageJson.peerDependenciesMeta[packageSpec.name] || {}
+        packageJson.peerDependenciesMeta[packageSpec.name].optional = true
+      }
     }
   })
 

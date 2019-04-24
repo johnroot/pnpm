@@ -189,6 +189,7 @@ export async function recursive (
     store: store.path,
     storeController,
     targetDependenciesField: getSaveType(opts),
+    optionalPeer: opts.saveOptionalPeer,
   }) as InstallOptions
 
   const result = {
@@ -269,6 +270,7 @@ export async function recursive (
               prefix,
               shamefullyFlatten,
               targetDependenciesField: getSaveType(installOpts),
+              optionalPeer: opts.saveOptionalPeer,
             } as MutatedImporter
           case 'install':
             return {

@@ -86,6 +86,7 @@ export type DependenciesMutation = (
     dependencySelectors: string[],
     mutation: 'installSome',
     peer?: boolean,
+    optionalPeer?: boolean,
     pruneDirectDependencies?: boolean,
     pinnedVersion?: 'major' | 'minor' | 'patch',
     targetDependenciesField?: DependenciesField,
@@ -561,6 +562,7 @@ export async function addDependenciesToPackage (
     prefix?: string,
     pinnedVersion?: 'major' | 'minor' | 'patch',
     targetDependenciesField?: DependenciesField,
+    optionalPeer?: boolean,
   },
 ) {
   const importers = await mutateModules(
@@ -571,6 +573,7 @@ export async function addDependenciesToPackage (
         manifest,
         mutation: 'installSome',
         peer: opts.peer,
+        optionalPeer: opts.optionalPeer,
         pinnedVersion: opts.pinnedVersion,
         prefix: opts.prefix || process.cwd(),
         shamefullyFlatten: opts.shamefullyFlatten,
@@ -731,6 +734,7 @@ async function installInContext (
               rawSpec: dep.specRaw,
             }),
             saveType: importer.targetDependenciesField,
+            optionalPeer: importer.optionalPeer,
           }
         })
       for (const pkgToInstall of importer.wantedDeps) {
@@ -739,6 +743,7 @@ async function installInContext (
             name: pkgToInstall.alias,
             peer: importer.peer,
             saveType: importer.targetDependenciesField,
+            optionalPeer: importer.optionalPeer,
           })
         }
       }
