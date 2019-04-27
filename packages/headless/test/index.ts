@@ -614,13 +614,25 @@ test('using side effects cache', async (t) => {
   }, {}, {}, { packageImportMethod: 'copy' })
   await headless(opts)
 
-  const cacheBuildDir = path.join(opts.store, 'localhost+4873', 'runas', '3.1.1', 'side_effects', `${process.platform}-${process.arch}-node-${process.version.split('.')[0]}`, 'package', 'build')
+  const cacheBuildDir = path.join(
+    opts.store,
+    'localhost+4873',
+    'bcrypt',
+    '3.0.6',
+    'side_effects',
+    `${process.platform}-${process.arch}-node-${process.version.split('.')[0]}`,
+    'package',
+    'build',
+  )
   fse.writeFileSync(path.join(cacheBuildDir, 'new-file.txt'), 'some new content')
 
   await rimraf(path.join(prefix, 'node_modules'))
   await headless(opts)
 
-  t.ok(await exists(path.join(prefix, 'node_modules', 'runas', 'build', 'new-file.txt')), 'side effects cache correctly used')
+  t.ok(
+    await exists(path.join(prefix, 'node_modules', 'bcrypt', 'build', 'new-file.txt')),
+    'side effects cache correctly used',
+  )
 
   t.end()
 })
@@ -654,17 +666,29 @@ test('using side effects cache and shamefully-flatten', async (t) => {
   await headless(opts)
 
   const project = assertProject(t, prefix)
-  await project.has('es5-ext') // verifying that a flat node_modules was created
+  await project.has('bcrypt') // verifying that a flat node_modules was created
 
-  const cacheBuildDir = path.join(opts.store, 'localhost+4873', 'runas', '3.1.1', 'side_effects', `${process.platform}-${process.arch}-node-${process.version.split('.')[0]}`, 'package', 'build')
+  const cacheBuildDir = path.join(
+    opts.store,
+    'localhost+4873',
+    'bcrypt',
+    '3.0.6',
+    'side_effects',
+    `${process.platform}-${process.arch}-node-${process.version.split('.')[0]}`,
+    'package',
+    'build',
+  )
   fse.writeFileSync(path.join(cacheBuildDir, 'new-file.txt'), 'some new content')
 
   await rimraf(path.join(prefix, 'node_modules'))
   await headless(opts)
 
-  t.ok(await exists(path.join(prefix, 'node_modules', 'runas', 'build', 'new-file.txt')), 'side effects cache correctly used')
+  t.ok(
+    await exists(path.join(prefix, 'node_modules', 'bcrypt', 'build', 'new-file.txt')),
+    'side effects cache correctly used',
+  )
 
-  await project.has('es5-ext') // verifying that a flat node_modules was created
+  await project.has('bcrypt') // verifying that a flat node_modules was created
 
   t.end()
 })

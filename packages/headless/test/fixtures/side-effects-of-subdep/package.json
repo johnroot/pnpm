@@ -1,5 +1,5 @@
 {
 	"dependencies": {
-		"pathwatcher": "7.1.1"
+		"has-native-dep": "1.0.1"
 	}
 }
