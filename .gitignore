@@ -30,3 +30,7 @@ __package_previews__
 .store
 
 privatePackages/store
+
+.pnpm/**/node_modules
+.pnpm/**/package
+.pnpm/**/integrity.json
