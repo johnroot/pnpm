@@ -336,3 +336,8 @@ declare module 'normalize-newline' {
   const anything: any;
   export = anything;
 }
+
+declare module '@berry/pnp' {
+  const anything: any;
+  export = anything;
+}
