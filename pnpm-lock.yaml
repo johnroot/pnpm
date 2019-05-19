@@ -723,7 +723,10 @@ importers:
       '@pnpm/lockfile-file': 'link:../lockfile-file'
       '@pnpm/lockfile-utils': 'link:../lockfile-utils'
       '@pnpm/pkgid-to-filename': 2.0.0
+      '@pnpm/read-importer-manifest': 'link:../read-importer-manifest'
+      '@types/mz': 0.0.32
       dependency-path: 'link:../dependency-path'
+      mz: 2.7.0
       ramda: 0.26.1
     devDependencies:
       '@pnpm/lockfile-to-pnp': 'link:'
@@ -740,9 +743,12 @@ importers:
       '@pnpm/lockfile-to-pnp': 'link:'
       '@pnpm/lockfile-utils': 1.0.6
       '@pnpm/pkgid-to-filename': 2.0.0
+      '@pnpm/read-importer-manifest': 1.0.2
       '@pnpm/types': 3.2.0
+      '@types/mz': 0.0.32
       '@types/ramda': 0.25.39
       dependency-path: 3.0.5
+      mz: 2.7.0
       ramda: 0.26.1
       rimraf: 2.6.3
       tape: 4.10.1

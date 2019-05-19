@@ -47,7 +47,10 @@
     "@pnpm/lockfile-file": "1.0.5",
     "@pnpm/lockfile-utils": "1.0.6",
     "@pnpm/pkgid-to-filename": "2.0.0",
+    "@pnpm/read-importer-manifest": "1.0.2",
+    "@types/mz": "0.0.32",
     "dependency-path": "3.0.5",
+    "mz": "2.7.0",
     "ramda": "0.26.1"
   }
 }

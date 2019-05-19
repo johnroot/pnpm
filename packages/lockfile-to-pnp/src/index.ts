@@ -1,14 +1,44 @@
 import pnp = require('@berry/pnp')
-import { Lockfile } from '@pnpm/lockfile-file'
+import { Lockfile, readWantedLockfile } from '@pnpm/lockfile-file'
 import {
   nameVerFromPkgSnapshot,
   packageIdFromSnapshot,
 } from '@pnpm/lockfile-utils'
 import pkgIdToFilename from '@pnpm/pkgid-to-filename'
+import readImporterManifest from '@pnpm/read-importer-manifest'
 import { Registries } from '@pnpm/types'
 import { refToRelative } from 'dependency-path'
+import fs = require('mz/fs')
 import path = require('path')
 import R = require('ramda')
+
+export async function lockfileToPnp (lockfileDirectory: string) {
+  const lockfile = await readWantedLockfile(lockfileDirectory, { ignoreIncompatible: true })
+  if (!lockfile) throw new Error('Cannot generate a .pnp.js without a lockfile')
+  const importerNames = {} as { [importerId: string]: string }
+  await Promise.all(
+    Object.keys(lockfile.importers)
+      .map(async (importerId) => {
+        const importerDirectory = path.join(lockfileDirectory, importerId)
+        const { manifest } = await readImporterManifest(importerDirectory)
+        importerNames[importerId] = manifest.name as string
+      }),
+  )
+  const packageRegistry = lockfileToPackageRegistry(lockfile, {
+    importerNames,
+    lockfileDirectory,
+    registries: { default: 'https://registry.npmjs.org' },
+    storeDirectory: '/home/zoltan/.pnpm-store/2/',
+  })
+
+  const loaderFile = pnp.generateInlinedScript({
+    blacklistedLocations: undefined,
+    ignorePattern: undefined,
+    packageRegistry,
+    shebang: undefined,
+  })
+  await fs.writeFile(path.join(lockfileDirectory, '.pnp.js'), loaderFile, 'utf8')
+}
 
 export function lockfileToPackageRegistry (
   lockfile: Lockfile,
@@ -67,12 +97,12 @@ export function lockfileToPackageRegistry (
     const packageId = packageIdFromSnapshot(relDepPath, pkgSnapshot, opts.registries)
     // TODO: what about packages that are built?
     // Also, storeController has .getPackageLocation()
-    const packageLocation = path.join(
+    const packageLocation = path.relative(opts.lockfileDirectory, path.join(
       opts.storeDirectory,
       pkgIdToFilename(packageId, opts.lockfileDirectory),
       'node_modules',
       name,
-    )
+    ))
     packageStore.set(version, {
       packageDependencies: new Map([
         [name, version],
