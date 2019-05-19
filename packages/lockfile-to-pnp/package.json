@@ -4,6 +4,9 @@
   "description": "Creates a Plug'n'Play file from a pnpm-lock.yaml",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
+  "bin": {
+    "create-pnp": "lib/createPnpBin"
+  },
   "engines": {
     "node": ">=8.15"
   },
@@ -44,10 +47,12 @@
   },
   "dependencies": {
     "@berry/pnp": "0.0.1",
+    "@pnpm/config": "3.3.2",
     "@pnpm/lockfile-file": "1.0.5",
     "@pnpm/lockfile-utils": "1.0.6",
     "@pnpm/pkgid-to-filename": "2.0.0",
     "@pnpm/read-importer-manifest": "1.0.2",
+    "@pnpm/store-path": "2.0.0",
     "@types/mz": "0.0.32",
     "dependency-path": "3.0.5",
     "mz": "2.7.0",

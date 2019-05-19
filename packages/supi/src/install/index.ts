@@ -923,7 +923,10 @@ async function installInContext (
 
   await opts.storeController.close()
 
-  return importersToLink.map((importer) => ({ prefix: importer.prefix, manifest: importer.manifest }))
+  return {
+    importers: importersToLink.map((importer) => ({ prefix: importer.prefix, manifest: importer.manifest })),
+    wantedLockfile: ctx.wantedLockfile,
+  }
 }
 
 const limitLinking = pLimit(16)

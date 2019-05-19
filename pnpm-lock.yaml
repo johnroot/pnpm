@@ -720,10 +720,12 @@ importers:
   packages/lockfile-to-pnp:
     dependencies:
       '@berry/pnp': 0.0.1
+      '@pnpm/config': 'link:../config'
       '@pnpm/lockfile-file': 'link:../lockfile-file'
       '@pnpm/lockfile-utils': 'link:../lockfile-utils'
       '@pnpm/pkgid-to-filename': 2.0.0
       '@pnpm/read-importer-manifest': 'link:../read-importer-manifest'
+      '@pnpm/store-path': 2.0.0
       '@types/mz': 0.0.32
       dependency-path: 'link:../dependency-path'
       mz: 2.7.0
@@ -739,11 +741,13 @@ importers:
       typescript: 3.4.5
     specifiers:
       '@berry/pnp': 0.0.1
+      '@pnpm/config': 3.3.2
       '@pnpm/lockfile-file': 1.0.5
       '@pnpm/lockfile-to-pnp': 'link:'
       '@pnpm/lockfile-utils': 1.0.6
       '@pnpm/pkgid-to-filename': 2.0.0
       '@pnpm/read-importer-manifest': 1.0.2
+      '@pnpm/store-path': 2.0.0
       '@pnpm/types': 3.2.0
       '@types/mz': 0.0.32
       '@types/ramda': 0.25.39

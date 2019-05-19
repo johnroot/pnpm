@@ -1,4 +1,5 @@
 import pnp = require('@berry/pnp')
+import getConfigs from '@pnpm/config'
 import { Lockfile, readWantedLockfile } from '@pnpm/lockfile-file'
 import {
   nameVerFromPkgSnapshot,
@@ -6,6 +7,7 @@ import {
 } from '@pnpm/lockfile-utils'
 import pkgIdToFilename from '@pnpm/pkgid-to-filename'
 import readImporterManifest from '@pnpm/read-importer-manifest'
+import resolveStoreDir from '@pnpm/store-path'
 import { Registries } from '@pnpm/types'
 import { refToRelative } from 'dependency-path'
 import fs = require('mz/fs')
@@ -24,11 +26,13 @@ export async function lockfileToPnp (lockfileDirectory: string) {
         importerNames[importerId] = manifest.name as string
       }),
   )
+  const { registries, store } = await getConfigs({ cliArgs: {}, packageManager: { name: 'pnpm', version: '*' } })
+  const storeDirectory = await resolveStoreDir(lockfileDirectory, store)
   const packageRegistry = lockfileToPackageRegistry(lockfile, {
     importerNames,
     lockfileDirectory,
-    registries: { default: 'https://registry.npmjs.org' },
-    storeDirectory: '/home/zoltan/.pnpm-store/2/',
+    registries,
+    storeDirectory,
   })
 
   const loaderFile = pnp.generateInlinedScript({
