@@ -2,8 +2,7 @@
   "name": "@pnpm/read-package-json",
   "version": "2.0.2",
   "description": "Read a package.json",
-  "main": "lib/index.js",
-  "typings": "lib/index.d.ts",
+  "main": "src/index.ts",
   "engines": {
     "node": ">=8.15"
   },
@@ -43,8 +42,12 @@
     "@types/node": "^10.3.2",
     "@types/tape": "^4.2.31",
     "tape": "^4.8.0",
-    "ts-node": "8.1.0",
+    "ts-node": "8.0.2",
     "tslint": "^5.8.0",
     "typescript": "3.4.5"
+  },
+  "publishConfig": {
+    "main": "lib/index.js",
+    "typings": "lib/index.d.ts"
   }
 }

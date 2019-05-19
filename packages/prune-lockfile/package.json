@@ -2,8 +2,7 @@
   "name": "@pnpm/prune-lockfile",
   "version": "1.0.5",
   "description": "Prune a pnpm-lock.yaml",
-  "main": "lib/index.js",
-  "typings": "lib/index.d.ts",
+  "main": "src/index.ts",
   "engines": {
     "node": ">=8.15"
   },
@@ -36,11 +35,12 @@
     "@pnpm/prune-lockfile": "link:",
     "@pnpm/tsconfig": "0.0.0",
     "@pnpm/tslint-config": "0.0.0",
-    "@types/ramda": "0.25.39",
+    "@types/node": "*",
+    "@types/ramda": "0.25.34",
     "@types/tape": "4.2.33",
     "rimraf": "2.6.3",
     "tape": "4.10.1",
-    "ts-node": "8.1.0",
+    "ts-node": "8.0.2",
     "tslint": "5.16.0",
     "typescript": "3.4.5",
     "yaml-tag": "1.1.0"
@@ -51,5 +51,9 @@
     "@pnpm/types": "3.2.0",
     "dependency-path": "3.0.5",
     "ramda": "0.26.1"
+  },
+  "publishConfig": {
+    "main": "lib/index.js",
+    "typings": "lib/index.d.ts"
   }
 }

@@ -2,8 +2,7 @@
   "name": "@pnpm/types",
   "version": "3.2.0",
   "description": "Basic types used by pnpm",
-  "main": "lib/index.js",
-  "typings": "lib/index.d.ts",
+  "main": "src/index.ts",
   "engines": {
     "node": ">=8.15"
   },
@@ -32,5 +31,9 @@
     "rimraf": "2.6.3",
     "tslint": "5.16.0",
     "typescript": "3.4.5"
+  },
+  "publishConfig": {
+    "main": "lib/index.js",
+    "typings": "lib/index.d.ts"
   }
 }

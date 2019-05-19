@@ -2,8 +2,7 @@
   "name": "@pnpm/lockfile-file",
   "version": "1.0.5",
   "description": "Read/write pnpm-lock.yaml files",
-  "main": "lib/index.js",
-  "typings": "lib/index.d.ts",
+  "main": "src/index.ts",
   "engines": {
     "node": ">=8.15"
   },
@@ -42,12 +41,12 @@
     "@pnpm/tslint-config": "0.0.0",
     "@types/js-yaml": "3",
     "@types/node": "*",
-    "@types/ramda": "0.25.39",
+    "@types/ramda": "0.25.34",
     "@types/tape": "4.2.33",
     "rimraf": "2.6.3",
     "tape": "4.10.1",
     "tempy": "0.3.0",
-    "ts-node": "8.1.0",
+    "ts-node": "8.0.2",
     "tslint": "5.16.0",
     "typescript": "3.4.5",
     "write-yaml-file": "2.0.0",
@@ -64,5 +63,9 @@
     "read-yaml-file": "1.1.0",
     "rimraf-then": "1.0.1",
     "write-file-atomic": "2.4.2"
+  },
+  "publishConfig": {
+    "main": "lib/index.js",
+    "typings": "lib/index.d.ts"
   }
 }

@@ -2,8 +2,7 @@
   "name": "@pnpm/prepare",
   "version": "0.0.0",
   "private": true,
-  "main": "lib/index.js",
-  "typings": "lib/index.d.ts",
+  "main": "src/index.ts",
   "dependencies": {
     "@pnpm/assert-project": "2.0.0",
     "@pnpm/modules-yaml": "3.0.2",
@@ -31,5 +30,9 @@
     "prepublishOnly": "pnpm run tsc",
     "test": "pnpm run tsc && pnpm run lint",
     "tsc": "rimraf lib && tsc"
+  },
+  "publishConfig": {
+    "main": "lib/index.js",
+    "typings": "lib/index.d.ts"
   }
 }

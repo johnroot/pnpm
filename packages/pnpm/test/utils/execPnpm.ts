@@ -1,7 +1,8 @@
 import crossSpawn = require('cross-spawn')
 import path = require('path')
 
-const pnpmBinLocation = path.join(__dirname, '..', '..', 'bin', 'pnpm.js')
+const pnpmBinLocation = path.join(__dirname, '..', '..', 'src', 'bin', 'pnpm.ts')
+const executor = path.join(__dirname, '..', '..', 'node_modules', '.bin', 'ts-node')
 
 export default function (...args: string[]): Promise<void>
 export default async function () {
@@ -19,7 +20,7 @@ export default async function () {
 }
 
 export function spawn (args: string[], opts?: {storeDir?: string}) {
-  return crossSpawn.spawn('node', [pnpmBinLocation, ...args], {
+  return crossSpawn.spawn(executor, [pnpmBinLocation, ...args], {
     env: createEnv(opts),
     stdio: 'inherit',
   })
@@ -34,7 +35,7 @@ export type ChildProcess = {
 export function sync (...args: string[]): ChildProcess
 export function sync (): ChildProcess {
   const args = Array.prototype.slice.call(arguments)
-  return crossSpawn.sync('node', [pnpmBinLocation, ...args], {
+  return crossSpawn.sync(executor, [pnpmBinLocation, ...args], {
     env: createEnv(),
   })
 }

@@ -75,6 +75,10 @@
     {
       "packageNames": ["agentkeepalive"],
       "allowedVersions": "4.0.0"
+    },
+    {
+      "packageNames": ["ts-node"],
+      "allowedVersions": "8.0.2"
     }
   ],
   "pinVersions": false,

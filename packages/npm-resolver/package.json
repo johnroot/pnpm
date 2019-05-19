@@ -2,8 +2,7 @@
   "name": "@pnpm/npm-resolver",
   "version": "3.0.9",
   "description": "Resolver for npm-hosted packages",
-  "main": "lib/index.js",
-  "typings": "lib/index.d.ts",
+  "main": "src/index.ts",
   "files": [
     "lib"
   ],
@@ -64,8 +63,12 @@
     "rimraf": "^2.6.2",
     "tape": "4.10.1",
     "tempy": "^0.3.0",
-    "ts-node": "8.1.0",
+    "ts-node": "8.0.2",
     "tslint": "5.16.0",
     "typescript": "3.4.5"
+  },
+  "publishConfig": {
+    "main": "lib/index.js",
+    "typings": "lib/index.d.ts"
   }
 }

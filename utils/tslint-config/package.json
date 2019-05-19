@@ -10,8 +10,7 @@
   "bugs": {
     "url": "https://github.com/pnpm/tslint-config/issues"
   },
-  "main": "lib/index.js",
-  "typings": "lib/index.d.ts",
+  "main": "src/index.ts",
   "files": [
     "lib"
   ],
@@ -33,5 +32,9 @@
     "node": ">=8.15"
   },
   "repository": "https://github.com/pnpm/tslint-config/blob/master/packages/supi",
-  "scripts": {}
+  "scripts": {},
+  "publishConfig": {
+    "main": "lib/index.js",
+    "typings": "lib/index.d.ts"
+  }
 }

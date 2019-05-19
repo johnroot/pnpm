@@ -1,3 +1,4 @@
+///<reference path="../../../../typings/index.d.ts"/>
 'use strict'
 // Avoid "Possible EventEmitter memory leak detected" warnings
 // because it breaks pnpm's CLI output
@@ -70,6 +71,7 @@ async function runPnpm () {
     const main = (await import('../main')).default
     await main(argv)
   } catch (err) {
+    console.log(err)
     errorHandler(err)
   }
 }

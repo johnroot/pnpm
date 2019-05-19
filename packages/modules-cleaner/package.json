@@ -7,8 +7,7 @@
     "email": "z@kochan.io",
     "url": "https://www.kochan.io/"
   },
-  "main": "lib/index.js",
-  "typings": "lib/index.d.ts",
+  "main": "src/index.ts",
   "files": [
     "lib"
   ],
@@ -49,9 +48,13 @@
     "@pnpm/tsconfig": "0.0.0",
     "@pnpm/tslint-config": "0.0.0",
     "@types/node": "*",
-    "@types/ramda": "0.25.38",
+    "@types/ramda": "0.25.34",
     "rimraf": "2.6.3",
     "tslint": "5.16.0",
     "typescript": "3.4.5"
+  },
+  "publishConfig": {
+    "main": "lib/index.js",
+    "typings": "lib/index.d.ts"
   }
 }

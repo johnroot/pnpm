@@ -2,8 +2,7 @@
   "name": "@pnpm/write-importer-manifest",
   "version": "1.0.1",
   "description": "Write an importer manifest (called package.json in most cases)",
-  "main": "lib/index.js",
-  "typings": "lib/index.d.ts",
+  "main": "src/index.ts",
   "engines": {
     "node": ">=8.15"
   },
@@ -47,8 +46,12 @@
     "@types/tape": "^4.2.31",
     "tape": "^4.8.0",
     "tempy": "0.3.0",
-    "ts-node": "8.1.0",
+    "ts-node": "8.0.2",
     "tslint": "^5.8.0",
     "typescript": "3.4.5"
+  },
+  "publishConfig": {
+    "main": "lib/index.js",
+    "typings": "lib/index.d.ts"
   }
 }

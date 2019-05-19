@@ -2,8 +2,7 @@
   "name": "@pnpm/fetch",
   "version": "1.0.0",
   "description": "node-fetch with retries",
-  "main": "lib/index.js",
-  "typings": "lib/index.d.ts",
+  "main": "src/index.ts",
   "files": [
     "lib"
   ],
@@ -38,5 +37,9 @@
     "rimraf": "^2.6.2",
     "tslint": "5.16.0",
     "typescript": "3.4.5"
+  },
+  "publishConfig": {
+    "main": "lib/index.js",
+    "typings": "lib/index.d.ts"
   }
 }
